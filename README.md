@@ -1,0 +1,103 @@
+# ₿ Bitcoin Price Direction Predictor
+
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
+![Status](https://img.shields.io/badge/Status-Research%20Complete-green)
+
+### 🔴 [Live Demo](https://YOUR-APP-URL-HERE.streamlit.app/)
+
+> **Research Goal:** Investigate whether Deep Learning architectures (Transformers/LSTMs) can statistically outperform linear baselines in forecasting short-term Bitcoin volatility.
+
+---
+
+## 📊 Project Overview
+
+This project builds an end-to-end machine learning pipeline to predict the **daily directional movement** (Up/Down) of Bitcoin. 
+
+Unlike typical "price prediction" tutorials that overfit data, this project rigorously benchmarks complex Neural Networks against simple statistical baselines to test the **Efficient Market Hypothesis (EMH)**.
+
+### 🧠 The "Brain" Behind the App
+* **Architecture:** Custom Transformer Encoder with Multi-Head Attention.
+* **Input Features:** 14-day window of Stationary Returns & Volume Changes.
+* **Interpretability:** SHAP (SHapley Additive exPlanations) analysis to visualize feature importance.
+
+---
+
+## 🔬 Key Research Findings
+
+After extensive training and hyperparameter tuning, the results yielded a fascinating insight into financial markets:
+
+1.  **The "Random Walk" Validation:**
+    * **Linear Baseline Error (MAE):** `2.03%`
+    * **Transformer Model Error (MAE):** `2.09%`
+    * *Conclusion:* The deep learning model performed statistically identically to the linear baseline. This validates the Efficient Market Hypothesis for short-term (<14 days) timeframes, suggesting that price returns are highly stochastic and difficult to predict using price history alone.
+
+2.  **Feature Importance (SHAP):**
+    * Analysis revealed that **Volume (lagged by 2 days)** was the most significant predictor of volatility, suggesting a delayed market reaction to massive trading events.
+
+3.  **Lag Effect:**
+    * The deployed model exhibits a ~1-day lag during sharp trend reversals, confirming that the Transformer relies heavily on recent momentum signals.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Data Collection:** `yfinance` (Yahoo Finance API)
+* **Preprocessing:** Pandas, NumPy, Scikit-Learn (MinMax Scaling)
+* **Modeling:** TensorFlow / Keras (Transformer & LSTM)
+* **Visualization:** Matplotlib, SHAP
+* **Deployment:** Streamlit Cloud
+
+---
+
+## 🚀 How to Run Locally
+
+If you want to run this dashboard on your own machine:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YOUR-USERNAME/crypto-forecaster.git](https://github.com/YOUR-USERNAME/crypto-forecaster.git)
+    cd crypto-forecaster
+    ```
+
+2.  **Create a Virtual Environment (Optional but Recommended):**
+    ```bash
+    python -m venv venv
+    # Windows
+    venv\Scripts\activate
+    # Mac/Linux
+    source venv/bin/activate
+    ```
+
+3.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Run the App:**
+    ```bash
+    python -m streamlit run app/app.py
+    ```
+
+---
+
+## 📂 Project Structure
+
+```text
+├── app/
+│   └── app.py               # Main Streamlit dashboard code
+├── data/
+│   ├── raw/                 # Historical CSV downloads
+│   └── processed/           # Scaled .npy files for training
+├── models/
+│   └── transformer_model.keras  # The trained neural network
+├── notebooks/
+│   ├── 1_data_exploration.ipynb
+│   ├── 2_feature_engineering.ipynb
+│   ├── 3_baseline_models.ipynb  # Linear Regression benchmark
+│   ├── 4_lstm_model.ipynb       # LSTM experiments
+│   ├── 5_transformer_model.ipynb # Final Transformer architecture
+│   └── 6_interpretability.ipynb # SHAP analysis
+├── requirements.txt         # Project dependencies
+└── README.md                # Project documentation
