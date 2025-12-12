@@ -5,7 +5,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
 ![Status](https://img.shields.io/badge/Status-Research%20Complete-green)
 
-### [Live Demo](https://YOUR-APP-URL-HERE.streamlit.app/)
+### [Live Demo](https://btc-price-direction.streamlit.app/)
 
 > **Research Goal:** Investigate whether Deep Learning architectures (Transformers/LSTMs) can statistically outperform linear baselines in forecasting short-term Bitcoin volatility.
 
